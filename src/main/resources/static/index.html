@@ -1,0 +1,101 @@
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/md-data-table.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body ng-app="myApp" ng-cloak>
+<div ng-show='activeRequests==0'>
+  <div layout="row" layout="column" layout-align="center center">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav</h1>
+      </md-toolbar>
+    </md-sidenav>
+  </div>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button aria-label="Sidenav" ng-click="toggleLeft()">
+        Sidenav
+      </md-button>
+
+
+      <!--<md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">Toolbar with Standard Buttons</md-truncate>-->
+
+      <span flex></span>
+      <md-button class="md-raised" aria-label="Learn More">
+        Logout
+      </md-button>
+      <md-button class="md-fab md-secondary md-mini" aria-label="Favorite">
+        <md-icon class="material-icons md-light md-48"> perm_identity </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <!--<div layout="row" layout="column" layout-align="center center" >
+      <md-progress-circular  md-diameter="96"></md-progress-circular>
+    </div>-->
+
+
+<md-fab-toolbar md-open="false" count="0" md-direction="left">
+  <md-fab-trigger class="align-with-text">
+    <md-button aria-label="reorder" class="md-fab md-primary">
+      <md-icon class="material-icons md-light md-48"> reorder </md-icon>
+    </md-button>
+  </md-fab-trigger>
+  <md-toolbar>
+    <md-fab-actions class="md-toolbar-tools">
+      <md-button aria-label="photo" class="md-icon-button">
+        <md-icon class="material-icons md-light md-48"> reorder </md-icon>
+      </md-button>
+      <md-button aria-label="comment" class="md-icon-button" href='#patientList'>
+        <md-icon class="material-icons md-light md-48">accessibility</md-icon>
+      </md-button>
+      <!--<md-button aria-label="label" class="md-icon-button">
+        <md-icon class="material-icons md-light md-48">assignment ind</md-icon>
+      </md-button>
+      <md-button aria-label="photo" class="md-icon-button">
+        <md-icon class="material-icons md-light md-48">assignment</md-icon>
+      </md-button>-->
+
+
+      <md-button aria-label="photo" class="md-icon-button" href='#newPatient'>
+        <md-icon class="material-icons md-light md-48">add alert</md-icon>
+      </md-button>
+
+    </md-fab-actions>
+  </md-toolbar>
+</md-fab-toolbar>
+<ng-view></ng-view>
+</div>
+
+<div layout="row" layout-align="center center" layout-fill style="background-color: black;position: absolute" ng-show='activeRequests!=0'>
+  <md-progress-circular md-diameter="96"></md-progress-circular>
+</div>
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="/dist/md-data-table.min.js"></script>
+<script type="text/javascript" src="/js/static-include.js"></script>
+<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script type="text/javascript" src="/js/service/PatientService.js"></script>
+<script type="text/javascript" src="/js/controller/PatientController.js"></script>
+<script type="text/javascript" src="/js/controller/HomeController.js"></script>
+<script type="text/javascript" src="/js/controller/patientProfileController.js"></script>
+<script type="text/javascript" src="/js/controller/newPatientController.js"></script>
+
+<script type="text/javascript" src="/js/controller/patientListController.js"></script>
+<!-- Your application bootstrap  -->
+</body>
+
+</html>

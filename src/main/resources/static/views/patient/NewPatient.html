@@ -1,0 +1,122 @@
+<md-content class="md-padding" md-theme="docs-dark" layout-padding>
+    <form name="userForm" novalidate>
+        <!--<md-input-container class="md-icon-float md-block"><label>First Name</label><input
+			name="firstName" ng-model="newPatient.firstName" required md-maxlength="10"
+			minlength="4"><div ng-messages="userForm.firstName.$error"
+			ng-show="userForm.firstName.$dirty"><div ng-message="required">This is required!</div><div ng-message="md-maxlength">That's too long!</div><div ng-message="minlength">That's too short!</div></div></md-input-container>-->
+        <div layout="row" layout-margin>
+            <md-input-container flex="20">
+                <label>First Name</label>
+                <input name="firstName" ng-model="newPatient.firstName" required md-maxlength="10" minlength="4">
+                <div ng-messages="userForm.firstName.$error" ng-show="userForm.firstName.$dirty">
+                    <div ng-message="required">This is required!</div>
+                    <div ng-message="md-maxlength">That's too long!</div>
+                    <div ng-message="minlength">That's too short!</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex="20">
+                <label>Middle Name</label>
+                <input name="middleName" ng-model="newPatient.middleName" md-maxlength="10">
+                <div ng-messages="userForm.middleName.$error" ng-show="userForm.middleName.$dirty">
+                    <div ng-message="md-maxlength">That's too long!</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex="20">
+                <label>Last Name</label>
+                <input name="lastName" ng-model="newPatient.lastName" required>
+                <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
+                    <div ng-message="required">This is required!</div>
+                    <div ng-message="md-maxlength">That's too long!</div>
+                    <div ng-message="minlength">That's too short!</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-margin>
+            <md-input-container flex="20">
+                <label>Phone Number</label>
+                <input name="phoneNumber" ng-model="newPatient.phoneNumber" required md-maxlength="10" maxlength="10">
+                <div ng-messages="userForm.phoneNumber.$error" ng-show="userForm.phoneNumber.$dirty">
+                    <div ng-message="required">This is required!</div>
+                    <div ng-message="minlength">Invalid Number</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Secondary Phone Number</label>
+                <input name="secondaryPhoneNumber" ng-model="newPatient.secondaryPhoneNumber" md-maxlength="10" maxlength="10">
+                <div ng-messages="userForm.secondaryPhoneNumber.$error" ng-show="userForm.secondaryPhoneNumber.$dirty">
+                    <div ng-message="minlength">Invalid Number</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex="20">
+                <label>Email</label>
+                <input name="email" ng-model="newPatient.email" required maxlength="40" ng-pattern="/^.+@.+\..+$/" />
+                <div ng-messages="userForm.email.$error">
+                    <div ng-message-exp="['required', 'maxlength', 'pattern']">
+                        Your email must be less than 40 characters long and look like an e-mail address.
+                    </div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-margin>
+            <md-input-container flex="20">
+                <label>Father's' Name</label>
+                <input name="fatherName" ng-model="newPatient.fatherName" required md-maxlength="20" minlength="4">
+                <div ng-messages="userForm.fatherName.$error" ng-show="userForm.fatherName.$dirty">
+                    <div ng-message="required">This is required!</div>
+                    <div ng-message="md-maxlength">That's too long!</div>
+                    <div ng-message="minlength">That's too short!</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex="30">
+                <label>Date OF Birth</label>
+                <md-datepicker name="dob" ng-model="newPatient.dob" required></md-datepicker>
+                <div ng-messages="userForm.dob.$error" ng-show="userForm.dob.$dirty">
+                    <div ng-message="required">This is required!</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout="row" layout-margin layout-padding>
+           
+            <md-input-container flex="15">
+                <label>Blood Group</label>
+                <md-select name="type" ng-model="newPatient.bloodGroup" required>
+                    <md-option value="O+">O +</md-option>
+                    <md-option value="O-">O -</md-option>
+                    <md-option value="A+">A +</md-option>
+                    <md-option value="A-">A -</md-option>
+                    <md-option value="B+">B +</md-option>
+                    <md-option value="B-">B -</md-option>
+                    <md-option value="AB+">AB +</md-option>
+                    <md-option value="AB-">AB -</md-option>
+                </md-select>
+            </md-input-container>
+             <md-input-container flex="15">
+                <md-radio-group name="gender" ng-model="newPatient.gender" required class="md-primary">
+                    <md-radio-button value="male">Male</md-radio-button>
+                    <md-radio-button value="female"> Female </md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container  style="height:100px;width: 100px;">
+                <canvas></canvas>
+            </md-input-container>
+            <md-input-container >
+                <!--<label>Profile Photo</label>
+                <div ng-if="userMedia()">
+                    <button id="take">Take a photo</button>
+                    <br/>
+                </div>-->
+                <input type='file' name="profilePhoto" class='uploadProfilePicBtn' file-model="newPatient.profilePhoto"
+			/><div ng-messages="userForm.profilePhoto.$error" ng-show="userForm.profilePhoto.$dirty">
+                    <div ng-message="required">This is required!</div>
+                </div>
+            </md-input-container>
+            
+        </div>
+        <div>
+            <md-button md-no-ink class="md-raised md-primary" type="reset">Reset</md-button>
+            <md-button md-no-ink class="md-raised md-primary" type="submit" ng-click='addNewPatient(userForm)'>Submit</md-button>
+        </div>
+    </form>
+</md-content>
