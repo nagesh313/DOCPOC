@@ -1,0 +1,104 @@
+<div layout='row'>
+    <md-card md-theme="default" md-theme-watch flex="40">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Patient Profile</span>
+                <span class="md-subhead">{{patientRecords.details.first_Name+' '+patientRecords.details.last_Name+'/'+patientRecords.details.dob+'/'+patientRecords.details.gender }}</span>
+                <span class="md-subhead">Visit No. : {{patientRecords.prescriptionList.length+1}}</span>
+                <span class="md-subhead">Treatment: Root Canal	</span>
+                <span class="md-subhead">Fees Due: Rs 1025</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-md card-media"><img src="images/images.png">
+                </div>
+            </md-card-title-media>
+        </md-card-title>
+
+    </md-card>
+    <md-card md-theme="default" md-theme-watch flex="50">
+        <md-card-title>
+            <md-card-title-text>
+                <form name="PrescriptionForm" novalidate>
+                    <span class="md-subhead"><md-input-container class="md-block" flex='90'>
+          <label>Comments\Observations</label>
+          <textarea ng-model="newPrescription.comments" md-maxlength="150" rows="1" md-select-on-focus></textarea>
+        </md-input-container></span>
+                    <span class="md-subhead"><md-input-container>
+                                    <label>Fees</label>
+                                    <input name="feesCharged" ng-model="newPrescription.feesCharged" md-maxlength="10" required>
+                                    <div ng-messages="PrescriptionForm.feesCharged.$error" ng-show="PrescriptionForm.feesCharged.$dirty">
+                                        <div ng-message="required">This is required!</div>
+                                        <div ng-message="md-maxlength">That's too long!</div>
+                                       
+                                    </div>
+                                </md-input-container></span>
+                    <span class="md-subhead"><md-input-container>
+                                    <label>Next Appointment</label>
+                                    <md-datepicker name="nextAppointement" ng-model="newPrescription.nextAppointement" required></md-datepicker>
+                                    <div ng-messages="PrescriptionForm.nextAppointement.$error" ng-show="PrescriptionForm.nextAppointement.$dirty">
+                                        <div ng-message="required">This is required!</div>
+                                    </div>
+                                </md-input-container></span>
+                    <span class="md-subhead">
+                                    <div  layout-wrap layout="row" layout-align="center center">
+                                        <div flex='20'> <md-button class="md-primary md-raised" ng-click="showSelectMedicineDialog($event)" >Medicines</md-button></div>
+                                        <div flex='30'> <md-button class="md-raised md-primary" ng-disabled="PrescriptionForm.$invalid" ng-click="addNewPrescription()">Add Prescription</md-button></div>
+                                        <div flex="25"><md-switch class="md-primary" ng-model="newPrescription.email" aria-label="Send Email">Send Email</md-switch></div>
+        <div flex="25">
+            <md-switch class="md-primary"  ng-model="newPrescription.sms" aria-label="Send Email">
+         Send SMS
+        </md-switch>
+          <!--<md-checkbox ng-model="newPrescription.sms" aria-label="Send SMS" style="margin: 0">
+              Send SMS
+          </md-checkbox>-->
+        </div>
+        </div>
+        </span>
+
+                </form>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-md card-media"><img src="images/images.png">
+                </div>
+            </md-card-title-media>
+        </md-card-title>
+
+    </md-card>
+</div>	
+<div layout='row'>
+<md-content>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span>Patient Previous Record</span>
+        </div>
+    </md-toolbar>
+
+    <md-table-container>
+        <table md-table md-row-select ng-model="selected">
+            <thead md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column><span>Date</span>
+                    </th>
+                    <th md-column><span>Medicine</span>
+                    </th>
+                    <th md-column>Comments</th>
+                    <th md-column md-numeric>Fee Charges</th>
+                    <th md-column>Next Appointment</th>
+                    <th md-column>Photos</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select-id="preId" md-select="patientRecord" ng-repeat="patientRecord in patientRecords.prescriptionList  | limitTo: query.limit: (query.page - 1) * query.limit">
+                    <td md-cell>{{patientRecord.prescriptionDate}}</td>
+                    <td md-cell>{{patientRecord.medicines}}</td>
+                    <td md-cell>{{patientRecord.comments}}</td>
+                    <td md-cell>{{patientRecord.feesCharged}}</td>
+                    <td md-cell>{{patientRecord.nextAppointement}}</td>
+                    <td md-cell></td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="query.limit" md-page="query.page" md-limit-options="[5, 10, 15]" md-total="{{patientRecords.prescriptionList.length}}"></md-table-pagination>
+</md-content>
+</div>

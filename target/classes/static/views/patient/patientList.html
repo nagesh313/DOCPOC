@@ -1,0 +1,32 @@
+<md-content>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span>Patient List</span>
+        </div>
+    </md-toolbar>
+    <md-table-container>
+        <table md-table md-row-select ng-model="seletedPatient" >
+            <thead md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column><span>Name</span>
+                    </th>
+                    <th md-column><span>Contact No</span>
+                    </th>
+                    <th md-column>Email</th>
+                    <th md-column>DOB</th>
+                    <th md-column></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select-id="visitDate" md-select="patient" ng-repeat="patient in patientList | limitTo: query.limit: (query.page - 1) * query.limit">
+                    <td md-cell>{{patient.first_Name +' '+patient.last_Name}}</td>
+                    <td md-cell>{{patient.primaryMobile}}</td>
+                    <td md-cell>{{patient.email}}</td>
+                    <td md-cell>{{patient.dob}}</td>
+                    <td md-cell><md-icon md-font-icon="border_color" aria-label="border_color" ng-click="goToProfile(patient.patId)">border_color</md-icon></td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-limit-options="[5, 10, 15]" md-total="{{patientList.length}}"></md-table-pagination>
+</md-content>
